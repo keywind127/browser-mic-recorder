@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Audio Recorder</title>
+    </head>
+    <script src = "./audio_recorder.js"></script>
+    <script src = "./recorder_controller.js"></script>
+    <script defer>
+
+        var controller = new RecorderController();
+
+        controller.start().then(async () => {
+
+            await sleep(5000);
+
+        }).then(() => {
+
+            return controller.stop();
+
+        }).then((audioString) => {
+
+            console.log(audioString);
+
+        });
+
+    </script>
+    <body>
+        
+    </body>
+</html>
