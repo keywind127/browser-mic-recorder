@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Audio Recorder</title>
+    </head>
+    <script src = "./audio_recorder.js"></script>
+    <script defer>
+
+        record_audio_from_browser().then((output) => {
+
+            let mediaRecorder = output[0];
+
+            let audioRecorded = output[1];
+
+            mediaRecorder.start();
+
+            audioRecorded.then((audioData) => {
+
+                console.log(audioData);
+
+            });
+
+            sleep(5000).then(() => { 
+                
+                mediaRecorder.stop(); 
+            
+            });
+
+        });
+
+    </script>
+    <body>
+        
+    </body>
+</html>
