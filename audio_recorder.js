@@ -1,4 +1,4 @@
-function sleep(duration) {
+export function sleep(duration) {
 
     return new Promise((resolve) => {
 
@@ -8,7 +8,7 @@ function sleep(duration) {
 
 }
 
-async function record_audio_from_browser()
+export async function record_audio_from_browser()
 {
 
     let mediaRecorder = null;

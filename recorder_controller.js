@@ -1,7 +1,6 @@
+import { record_audio_from_browser, sleep } from "./audio_recorder.js";
 
-//import { record_audio_from_browser, sleep } from "./audio_recorder.js";
-
-class RecorderController
+export class RecorderController
 {
 
     static SLEEP_INTERVAL_MS = 100;
