@@ -3,8 +3,10 @@
     <head>
         <title>Audio Recorder</title>
     </head>
-    <script src = "https://cdn.jsdelivr.net/gh/keywind127/browser-mic-recorder@module/audio_recorder.js"></script>
-    <script defer>
+    <!-- <script src = "https://cdn.jsdelivr.net/gh/keywind127/browser-mic-recorder@module/audio_recorder.js"></script> -->
+    <script defer type = "module">
+
+        import { record_audio_from_browser } from "https://cdn.jsdelivr.net/gh/keywind127/browser-mic-recorder@module/audio_recorder.js";
 
         record_audio_from_browser().then((output) => {
 
