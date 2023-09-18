@@ -11,15 +11,26 @@ export function sleep(duration) {
 export async function record_audio_from_browser()
 {
 
+    const audioConstraints = {
+
+        sampleRate   : 16000,   
+        channelCount : 1      
+
+    };
+
+    const options = {
+        audioBitsPerSecond : 16000
+    };
+
     let mediaRecorder = null;
 
     let stopPromiseR = null;
 
     if (navigator.mediaDevices.getUserMedia && window.MediaRecorder) {
 
-        let stream = await navigator.mediaDevices.getUserMedia({ audio : true });
+        let stream = await navigator.mediaDevices.getUserMedia({ audio : audioConstraints });
 
-        mediaRecorder = new MediaRecorder(stream);
+        mediaRecorder = new MediaRecorder(stream, options);
 
         let audioChunks = [];
 
