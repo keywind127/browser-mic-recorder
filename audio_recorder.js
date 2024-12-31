@@ -18,9 +18,14 @@ async function record_audio_from_browser()
     if (navigator.mediaDevices.getUserMedia && window.MediaRecorder) {
 
         let stream = await navigator.mediaDevices.getUserMedia({ audio : true });
-
-        mediaRecorder = new MediaRecorder(stream);
-
+        
+        try {
+            mediaRecorder = new MediaRecorder(stream, {"mimeType": "audio/webm; codecs=opus"});
+        }
+        catch (err) {
+            mediaRecorder = new MediaRecorder(stream, {"mimeType": "audio/mp4; codecs=mp4a"});
+        }
+        
         let audioChunks = [];
 
         let audioData = null;
@@ -37,7 +42,7 @@ async function record_audio_from_browser()
 
         mediaRecorder.onstop = () => {
 
-            const audioBlob = new Blob(audioChunks, { "type" : "audio/wav" });
+            const audioBlob = new Blob(audioChunks, { "type" : "audio/wav; codecs=opus" });
 
             let fileReader = new FileReader();
 
