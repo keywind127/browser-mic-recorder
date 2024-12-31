@@ -19,7 +19,13 @@ export async function record_audio_from_browser()
     };
 
     const options = {
-        audioBitsPerSecond : 16000
+        audioBitsPerSecond : 16000,
+        mimeType: "audio/webm; codecs=opus"
+    };
+
+    const optionsErr = {
+        audioBitsPerSecond: 16000,
+        mimeType: "audio/mp4; codecs=mp4a"
     };
 
     let mediaRecorder = null;
@@ -30,8 +36,13 @@ export async function record_audio_from_browser()
 
         let stream = await navigator.mediaDevices.getUserMedia({ audio : audioConstraints });
 
-        mediaRecorder = new MediaRecorder(stream, options);
-
+        try {
+            mediaRecorder = new MediaRecorder(stream, options);
+        }
+        catch (err) {
+            mediaRecorder = new MediaRecorder(stream, optionsErr);
+        }
+        
         let audioChunks = [];
 
         let audioData = null;
@@ -48,7 +59,7 @@ export async function record_audio_from_browser()
 
         mediaRecorder.onstop = () => {
 
-            const audioBlob = new Blob(audioChunks, { "type" : "audio/wav" });
+            const audioBlob = new Blob(audioChunks, { "type" : "audio/wav; codecs=opus" });
 
             let fileReader = new FileReader();
 
