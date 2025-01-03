@@ -59,7 +59,7 @@ export async function record_audio_from_browser()
 
         mediaRecorder.onstop = () => {
 
-            const audioBlob = new Blob(audioChunks, { "type" : "audio/wav; codecs=opus" });
+            const audioBlob = new Blob(audioChunks, { "type" : "audio/webm; codecs=opus" });
 
             let fileReader = new FileReader();
 
